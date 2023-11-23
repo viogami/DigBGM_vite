@@ -8,6 +8,7 @@
 <p> 目前正在严峻开发中，兴趣项目<s>（精力有限）</s> </p>
 
 <p> 你可以访问它的 GitHub 仓库地址：<a href="https://github.com/viogami/vite_DigBgm" target="_blank">DigBgm_vite</a> </p>
+
 ## 首页面预览
 
 <img src="public/preview.png">
