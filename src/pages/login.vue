@@ -62,7 +62,7 @@
 
   <p></p>
   <!--不同面板激活，按钮实行不同函数-->
-  <el-button type="primary" round @click="activeNames.includes('1') ? SubMit_subject() : SubMit_user()">查询</el-button>
+  <el-button type="primary" round @click="activeNames.indexOf('1')!==-1 ? SubMit_subject() : SubMit_user()">查询</el-button>
 </el-card>
 </div>
 
