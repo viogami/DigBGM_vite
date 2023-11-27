@@ -17,4 +17,14 @@ function getUserAvatar (username, size) {
   })
 }
 
-export { login, getUserAvatar }
+//获得用户收藏信息
+function userFavorite (username,subject_type,type,limit,offset) {
+  return axios.get('/v0/users/' + username+'/collections' , {
+    username, //必需
+    subject_type,
+    type,
+    limit,
+    offset,
+  })
+}
+export { login, getUserAvatar , userFavorite }

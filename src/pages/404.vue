@@ -11,3 +11,6 @@
       </el-result>
     </div>
 </template>
+<script setup>
+import Header from "./Home/Header.vue";
+</script>

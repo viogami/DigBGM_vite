@@ -1,9 +1,5 @@
 <template>
-    <div>
-  <el-card class="box-card">
-    <!--标题-->
-    <h1 style="color: pink;">DigBGM</h1>
-    <p></p>
+  <el-card class="box-card"  >
     <!--折叠面板-->
     <el-collapse v-model="activeNames" accordion @change="handleCollapseChange">
       <div>
@@ -24,7 +20,7 @@
          </template>
         </el-input>
       </el-form-item>
-     </el-form>
+      </el-form>
       </el-collapse-item>
       </div>
 
@@ -59,39 +55,34 @@
     </el-collapse-item>
     </div>
     </el-collapse>
-
+    
   <p></p>
-  <!--不同面板激活，按钮实行不同函数-->
-  <el-button type="primary" round @click="activeNames.indexOf('1')!==-1 ? SubMit_subject() : SubMit_user()">查询</el-button>
+<!--不同面板激活，按钮实行不同函数-->
+<el-button type="primary" round @click="activeNames.indexOf('1')!==-1 ? SubMit_subject() : SubMit_user()">查询</el-button>
 </el-card>
-</div>
-
-<footer>
-    <p>© 2023 masterkagami</p>
-    <router-link to="/about">关于</router-link>
-</footer>
 
 </template>
 
 <script lang="ts" setup >
-import { login } from '../api/user' // login方法
-import { SearchSubject } from '../api/subject' // Search方法
+import { login, userFavorite} from '../../api/user' // login方法 userFavorite方法
+import { SearchSubject } from '../../api/subject' // Search方法
 import { reactive, ref } from 'vue'
 // 引入Vue Router
 import { useRouter } from 'vue-router'
 // ele组件
 import type { FormProps } from 'element-plus'
 import { ElNotification } from 'element-plus'
+import { UserFilled } from "@element-plus/icons-vue";
+//引入store
+import { useUserStore } from '../../store/userProfile.js'
 
 // 获取路由实例
 const router = useRouter()
-
 // 折叠面板
 const activeNames = ref(['1'])
 const handleCollapseChange = (activeNames) => {
   // console.log('激活的面板：', activeNames)
 }
-
 // 表单标签位置
 const labelPosition = ref<FormProps['labelPosition']>('top')
 
@@ -150,26 +141,25 @@ const SubMit_subject = () => {
 }
 // 用户查询按钮
 const UserFormRef = ref()
+//实例用户仓库
+const userProfile = useUserStore()
 const SubMit_user = () => {
   // 用户表单验证
   UserFormRef.value.validate(async (valid) => {
     if (valid) {
       // 根据响应中的信息判断是否是 Bangumi 用户
       login(UserForm.username)
-        .then(res => { // 注，此处请求正确的返回值res未用
+        .then(res => { 
           // 如果是 Bangumi 用户，跳转到 Bangumi 用户页面
           router.push({
             name: 'UserPage',
             params: { username: UserForm.username },
-            query: {
-              userAvatar: res.data.avatar.large
-              // userNickname: res.data.nickname,
-              // userSign: res.data.sign
-            }
           })
-
+          //设置用户信息
+          userProfile.setUserInfo(res.data.username,res.data.nickname,res.data.avatar.large,res.data.sign)
+          //显示登陆通知
           ElNotification({
-            message: '欢迎，' + res.data.nickname, // 获取昵称
+            message: '欢迎，' + res.data.nickname + '!', // 获取昵称
             type: 'success',
             duration: 2000 // 持续两秒
           }
@@ -186,4 +176,14 @@ const SubMit_user = () => {
     }
   })
 }
+
 </script>
+
+<style scoped>
+.box-card {
+  max-height: 500px;
+  max-width: 670px;
+  min-width: 200px;
+  text-align: center;
+}
+</style>

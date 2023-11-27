@@ -1,31 +1,39 @@
 <script setup>
 import { ref } from 'vue'
+import Header from "./Home/Header.vue";
+import FooterPage from "./Home/footer.vue";
 
-defineProps({
-  msg: String
-})
 const count = ref(0)
 </script>
 
 <template>
+<!-- 添加页头 -->
+  <Header :menu-index="'4'"/>
+<!-- 关于页面 -->
   <div class="about-container">
-    <h1>{{ title }}</h1>
-
+    <h2>
+      你可以访问它的 GitHub 仓库地址：<a href="https://github.com/viogami/DigBGM_vite" target="_blank">DigBGM_vite</a>
+    </h2>
+    
+    <h1> 更新日志 </h1>
+    <p>2023/11/26</p>
+    <p>前端基本首页做完了(基本能看)，现在就是功能逻辑了，用户的功能也大差不大了，项目准备build发布一次，后续开发一下检索的功能，并开发后端和数据库，进行数据处理。</p>
+   
+    <p>2023/11/16</p>
+    <p>决定还是做一下后端，参考了一个vue3+go的项目[weave]。
+      最近换了rider做IDE，主要U3D不想用vs2019了，太重了，整体。Rider也支持vite开发(说是支持web全栈),但他的js只支持到ES6，所以新的函数在里面会报错(比如includes，ES7的)。但是UI，代码检查等IDE整体设计我还是挺喜欢的。</p>
+  
+    <p>2023/11/16</p>
+    <p> 花了一下午搞清楚了bangumi的API是怎么在vite中用axios的get和post请求调用的，记录了。输入用户名或者各种搜索条件可以获取到相应的数据了，下一步做一个数据爬取，然后完善功能吧。
+     页面前端也不讲究太多了，能用就行。</p>
+    <p>2023/10/26</p>
+    <p> 今天发现之前是基于vue2的，用的是vue官方vue-cli脚手架，现在更推荐使用vite，仅支持更新的vue3，遂改之。
+      elementui也更新为element-plus仅用于支持vue3。vite不用全局安装，较为轻量。有了以前摸索的基础，下载了路由组件和element-plus，迅速就搭建好了空项目。</p>
+    
+    <p>2023/10/10</p>
     <p>
-      欢迎来到DigBgm--一个Bangumi数据检索工具！这个网站使用 Bangumi 的 API 实现数据检索。
-    </p>
-
-    <p>
-      前端使用 Vite 和 Element Plus 进行构建，让你在使用该工具的同时享受良好的用户体验。
-    </p>
-
-    <p>
-      目前正在严峻开发中，兴趣项目<s>（精力有限）</s>
-    </p>
-
-    <p>
-      你可以访问它的 GitHub 仓库地址：<a href="https://github.com/viogami/vite_DigBgm" target="_blank">vite_DigBgm</a>
-    </p>
+      个人作全栈开发，用vue这种较为轻量的前端开发框架。目前决定使用vue3+element-plus做前端。
+      框架搭建：下载node.js，配置环境。创建第一个vue单页应用。根据elementUI的官方步骤，引入依赖。</p>
 
     <div class="card">
       <button type="button" @click="count++">功德 {{ count }}</button>
@@ -34,31 +42,23 @@ const count = ref(0)
       </p>
     </div>
   </div>
+  
+  <footer-page/>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-      title: '关于我们'
-    }
-  },
-  methods: {
-
-  }
-}
-</script>
 
 <style scoped>
 .about-container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  flex: 1;
+  padding-bottom: 60px; /* 底部内边距，确保内容不会被页脚遮挡 */
 }
 
 h1 {
-  color: #333;
+  color: #808080;
 }
 
 p {

@@ -1,7 +1,7 @@
 {
-  "name": "vite_test",
+  "name": "digbgm",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,13 @@
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.6.2",
     "element-plus": "^2.3.14",
+    "front-matter": "^4.0.2",
+    "markdown-it": "^13.0.2",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-toc-done-right": "^4.2.0",
+    "pinia": "^2.1.7",
+    "prismjs": "^1.29.0",
+    "uslug": "^1.0.4",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
