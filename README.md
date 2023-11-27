@@ -2,7 +2,7 @@
 
 <p> 欢迎来到DigBgm--一个Bangumi数据检索工具！这个网站使用 Bangumi 的 API 实现数据检索。</p>
 
-<a href="https://digbgm.masterkagami.com/" rel="nofollow">演示地址Demo</a>
+<a href="http://digbgm.masterkagami.com/" rel="nofollow">演示地址Demo</a>
 
 <p> 前端使用 Vue3 和 Element Plus 进行构建，让你在使用该工具的同时享受良好的用户体验。
     后端使用golang的GIN框架，简单尝试中，本仓库只提交前端代码 </p>
