@@ -15,7 +15,7 @@ import {
 } from '@element-plus/icons-vue'
 
 //侧边栏折叠面板逻辑
-const isCollapse = navigator.userAgent.match(/Phone|iPad/) ? ref(true) : ref(false)
+const isCollapse =  document.body.clientWidth<950 ? ref(true) : ref(false)
 const collapseMenu = () => {
   isCollapse.value = !isCollapse.value
 }

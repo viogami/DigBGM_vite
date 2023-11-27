@@ -1,6 +1,5 @@
 <script setup>
 import github_icon from "../../assets/github-mark.svg";
-import { Document } from "@element-plus/icons-vue";
 
 defineProps(['menuIndex'])  //定义props实现页面跳转 导航标签也跳转
 </script>
@@ -32,12 +31,14 @@ defineProps(['menuIndex'])  //定义props实现页面跳转 导航标签也跳�
           </el-menu>
         </el-col>
 
-        <el-col :xs="2" :sm="4" :md="4" :lg="4" :xl="4"  style="display:flex;justify-content: right; align-items: center">
+        <el-col :xs="2" :sm="4" :md="4" :lg="4" :xl="4"  style="">
+          <ul>
           <el-button>
             <a href="https://github.com/viogami/DigBGM_vite" target="_blank">
               <img :src="github_icon" alt="GitHub Icon" width="18" height="18" />
             </a>
           </el-button>
+          </ul>
         </el-col>
       </el-row>
     </el-header>
