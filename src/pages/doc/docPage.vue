@@ -8,7 +8,7 @@
       <div v-if="date" style="margin-bottom: 1rem;"> {{ date }} </div>
     </div>
     <!--  使用markdown编辑器  -->
-    <MarkDown style="width: 100%;margin-top: 16px;margin-bottom: 32px;" :data="data" toc></MarkDown>
+    <MarkDown style="margin-top: 16px;margin-bottom: 32px;" :data="data" toc></MarkDown>
   </article>
 </div>
 </template>
@@ -84,7 +84,7 @@ onMounted(
 .article-page{
   display: flex;
   flex-direction: column; 
-  width: 100%;
+  width: 85%; /*doc文字页面宽度*/
   text-align: start;
 }
 </style>

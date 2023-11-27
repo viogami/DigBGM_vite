@@ -31,7 +31,7 @@ defineProps(['menuIndex'])  //定义props实现页面跳转 导航标签也跳�
           </el-menu>
         </el-col>
 
-        <el-col :xs="2" :sm="4" :md="4" :lg="4" :xl="4"  style="">
+        <el-col :xs="2" :sm="4" :md="4" :lg="4" :xl="4" >
           <ul>
           <el-button>
             <a href="https://github.com/viogami/DigBGM_vite" target="_blank">

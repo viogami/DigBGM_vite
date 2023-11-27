@@ -1,8 +1,8 @@
 <template>
   <div class="container0">
-    <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18" v-html="parse()">
+    <el-col :xs="24" :sm="24" :md="24" :lg="20" :xl="18" v-html="parse()">
     </el-col>
-    <el-col :xs="0" :sm="0" :md="6" :lg="6" :xl="6" v-if="props.toc" >
+    <el-col :xs="0" :sm="0" :md="0" :lg="4" :xl="6" v-if="props.toc" >
 <!-- 右侧文章导航 -->
     <div  class="container1">
       <nav class="container2">
