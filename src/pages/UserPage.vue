@@ -21,13 +21,13 @@
     <template #header>
       <div class="card-header">
         <span>用户收藏（每页显示8个,当前第{{ page }}页 ）</span>
-        <el-button text @click=" page-1 >= 1 ? nextPage(page--) : 
+        <el-button text @click=" page-1 >= 1 ? nextPage(--page) : 
             ElNotification({
             message: '已经是第一页了~',
             type: 'error',
             duration: 2000 // 持续两秒
           })">上一页</el-button>
-        <el-button text @click=" 8*(page) < userProfile.favorList_max ? nextPage(page++) : 
+        <el-button text @click=" 8*(page) < userProfile.favorList_max ? nextPage(++page) : 
             ElNotification({
             message: '后面没有了~',
             type: 'error',
@@ -35,7 +35,7 @@
           })">下一页</el-button>
       </div>
     </template>
-    <div v-for="f_item in userProfile.getFavorList(page-1,8)" :key="f_item+page" class="text item">{{ f_item }}</div>
+    <div v-for="f_item in userProfile.getFavorList(page-1,8)" :key="f_item" class="text item">{{ f_item }}</div>
   </el-card>
   </el-col>
 </el-main>
@@ -62,7 +62,7 @@ const type = '' //1: 想看 2: 看过 3: 在看 4: 搁置 5: 抛弃
 const errorHandler = () => true //头像加载失败
 
 //获取用户收藏,首次获取三页，避免的翻页加载等待(翻页获取的为下下页)
-userFavorite(username,subject_type,type,24,0).then( res => {
+userFavorite(username,subject_type,type,24).then( res => {
       userProfile.favorList=[] //先清空，防止旧数据冗余
       userProfile.favorList_max = res.data.total
        //循环res中收藏列表插入到store的favorlist中
@@ -89,10 +89,9 @@ userFavorite(username,subject_type,type,24,0).then( res => {
 const page = ref(1)
 
 const nextPage = (page) => {
-  console.log(userProfile.favorList)
-  //如果三个页面后没有数据，就加载一次
-  if (8*(page+2) > userProfile.favorList.length && userProfile.favorList.length < userProfile.favorList_max) {
-    userFavorite(username, subject_type, type, 24, 8 * (page+1)) //从offset=8*page之后一页加载24个(3页)
+  //如果2个页面后没有数据，就加载一次
+  if (8*(page+1) > userProfile.favorList.length && userProfile.favorList.length < userProfile.favorList_max) {
+    userFavorite(username, subject_type, type, 24, userProfile.favorList.length) //从list长度之后一页加载3页
         .then(res => {
           for (let item = 0; item < res.data.data.length; item++) {
             const name_cn = res.data.data[item].subject.name_cn

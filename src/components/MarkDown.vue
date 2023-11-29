@@ -30,10 +30,10 @@
 <script setup>
 import MarkDownIt from 'markdown-it';
 import prism from 'prismjs';
-import MarkDownItAnchor from 'markdown-it-anchor';
 import MarkDownDoneRight from 'markdown-it-toc-done-right';
 import uslug from 'uslug';
 import { ref } from 'vue';
+import anchor from "markdown-it-anchor";
 
 const props = defineProps({
   data: { type: String },
@@ -52,8 +52,8 @@ const md = MarkDownIt({
   html: true,
   linkify: true,
   typographer: true,
-  highlight: (code, lang) => {
-    if (lang === 'golang') {
+  highlight: (code, lang) => { //代码高亮
+    if (lang === 'golang') {  //golang简写为go
       lang = 'go'
     }
 
@@ -63,11 +63,10 @@ const md = MarkDownIt({
       return code;
     }
   }
-}).use(MarkDownItAnchor, {
-  permalink: true,
-  permalinkBefore: true,
-  permalinkSymbol: '#',
-  slugify: uslugify,
+}).use(anchor, {
+  permalink: anchor.permalink.ariaHidden({  //ARIA hidden
+    placement: 'before'
+  })
 }).use(MarkDownDoneRight, {
   slugify: uslugify,
   listType: 'ul',

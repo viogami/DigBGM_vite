@@ -21,12 +21,6 @@ const collapseMenu = () => {
   isCollapse.value = !isCollapse.value
 }
 
-const findType = (index) => {
-  if (index===1){
-    console.log('shuji')
-  }
-}
-
 </script>
 
 <template>
@@ -39,7 +33,7 @@ const findType = (index) => {
 <el-aside width="250px" class="sidebar">
   <h4 style="text-align:start;margin-left: 30px;">查询类型</h4>
   <el-menu
-      default-active="0"
+      default-active="全部类型"
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
       @select="index => {ElNotification({
