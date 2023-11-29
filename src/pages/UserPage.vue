@@ -3,10 +3,8 @@
 <!-- 主体内容区 -->
 <el-main class="UserPageMain">
   <!-- 主体内容 -->
-  <!-- 用户头像 -->
   <el-avatar :size="60" :src="userAvatar" @error="errorHandler" >
-    <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
-    />
+    <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" alt="用户头像"/>
   </el-avatar>
 
   <!-- 用户昵称 -->
@@ -18,15 +16,28 @@
   </div>
 
   <!-- 用户收藏信息 -->
+  <el-col style="display: flex;justify-content: center" >
   <el-card class="box-card">
     <template #header>
       <div class="card-header">
-        <span>用户收藏（每页显示8个，无中文名则为空）</span>
-        <el-button class="button" text @click="page++;console.log(page)">下一页</el-button>
+        <span>用户收藏（每页显示8个,当前第{{ page }}页 ）</span>
+        <el-button text @click=" page-1 >= 1 ? nextPage(page--) : 
+            ElNotification({
+            message: '已经是第一页了~',
+            type: 'error',
+            duration: 2000 // 持续两秒
+          })">上一页</el-button>
+        <el-button text @click=" 8*(page) < userProfile.favorList_max ? nextPage(page++) : 
+            ElNotification({
+            message: '后面没有了~',
+            type: 'error',
+            duration: 2000 // 持续两秒
+          })">下一页</el-button>
       </div>
     </template>
-    <div v-for="f_item in userProfile.getFavorList(page)" :key="f_item" class="text item">{{ f_item }}</div>
+    <div v-for="f_item in userProfile.getFavorList(page-1,8)" :key="f_item+page" class="text item">{{ f_item }}</div>
   </el-card>
+  </el-col>
 </el-main>
 </template>
 
@@ -44,28 +55,60 @@ const nickname = userProfile.nickname
 const userAvatar = userProfile.avatarUrl
 const userSign =  userProfile.sign === "" ? '该用户没有设置签名' : userProfile.sign
 
+const subject_type = 2 //1书籍 2动画 3音乐 4游戏 6三次元
+const type = '' //1: 想看 2: 看过 3: 在看 4: 搁置 5: 抛弃
+
+
 const errorHandler = () => true //头像加载失败
 
-//获取用户收藏
-userFavorite(username,2,3,300,0).then( res => {
+//获取用户收藏,首次获取三页，避免的翻页加载等待(翻页获取的为下下页)
+userFavorite(username,subject_type,type,24,0).then( res => {
       userProfile.favorList=[] //先清空，防止旧数据冗余
+      userProfile.favorList_max = res.data.total
+       //循环res中收藏列表插入到store的favorlist中
       for (let item=0; item < res.data.data.length; item++){
-        userProfile.addFavorList(res.data.data[item].subject.name_cn)
+        const name_cn = res.data.data[item].subject.name_cn
+        name_cn === '' ? userProfile.addFavorList(res.data.data[item].subject.name) : userProfile.addFavorList(name_cn)
       }
+      ElNotification({
+        message: '该用户共有'+res.data.total+'个收藏条目!',
+        type: 'success',
+        duration: 2000 // 持续两秒
+      })
     })
     .catch(err => {
       ElNotification({
         title: 'ERROR',
-        message: '用户收藏请求失败~',
+        message: '用户收藏请求失败~\n'+err.response.data.description,
         type: 'error',
         duration: 2000 // 持续两秒
       })
     })
 
 //定义页数，用于返回下一页用户收藏
-const page = ref(0)
+const page = ref(1)
 
-
+const nextPage = (page) => {
+  console.log(userProfile.favorList)
+  //如果三个页面后没有数据，就加载一次
+  if (8*(page+2) > userProfile.favorList.length && userProfile.favorList.length < userProfile.favorList_max) {
+    userFavorite(username, subject_type, type, 24, 8 * (page+1)) //从offset=8*page之后一页加载24个(3页)
+        .then(res => {
+          for (let item = 0; item < res.data.data.length; item++) {
+            const name_cn = res.data.data[item].subject.name_cn
+            name_cn === '' ? userProfile.addFavorList(res.data.data[item].subject.name) : userProfile.addFavorList(name_cn)
+          }
+        })
+        .catch(err => {
+          ElNotification({
+            title: 'ERROR',
+            message: '收藏请求出现错误~\n' + err.response.data.description,
+            type: 'error',
+            duration: 2000 // 持续两秒
+          })
+        })
+  }
+}
 </script>
 
 <style scoped>

@@ -12,10 +12,14 @@ const count = ref(0)
 <!-- 关于页面 -->
   <div class="about-container">
     <h2>
-      你可以访问它的 GitHub 仓库地址：<a href="https://github.com/viogami/DigBGM_vite" target="_blank">DigBGM_vite</a>
+      文档的 Introduce 页面调用的github的api实现，读取仓库的README.md文件。
+      如果因为网络问题不显示，可以访问该项目的 GitHub 仓库地址：<a href="https://github.com/viogami/DigBGM_vite" target="_blank">DigBGM_vite</a>
     </h2>
     
     <h1> 更新日志 </h1>
+    <p>2023/11/29</p>
+    <p>更新了用户收藏信息的调用算法，用缓存和阶段调用加速了翻页体验，并完善了响应式布局</p>
+    
     <p>2023/11/26</p>
     <p>前端基本首页做完了(基本能看)，现在就是功能逻辑了，用户的功能也大差不大了，项目准备build发布一次，后续开发一下检索的功能，并开发后端和数据库，进行数据处理。</p>
    
@@ -24,7 +28,7 @@ const count = ref(0)
       最近换了rider做IDE，主要U3D不想用vs2019了，太重了，整体。Rider也支持vite开发(说是支持web全栈),但他的js只支持到ES6，所以新的函数在里面会报错(比如includes，ES7的)。但是UI，代码检查等IDE整体设计我还是挺喜欢的。</p>
   
     <p>2023/11/16</p>
-    <p> 花了一下午搞清楚了bangumi的API是怎么在vue中用axios的get和post请求调用的，记录了。输入用户名或者各种搜索条件可以获取到相应的数据了，下一步做一个数据爬取，然后完善功能吧。
+    <p> 搞清楚了bangumi的API是怎么在vue中用axios的get和post请求调用的。输入用户名或者各种搜索条件可以获取到相应的数据了，下一步做一个数据获取并缓存的方法，减少加载时间，然后完善功能吧。
      页面前端也不讲究太多了，能用就行。</p>
     <p>2023/10/26</p>
     <p> 今天发现之前是基于vue2的，用的是vue官方vue-cli脚手架，现在更推荐使用vite，仅支持更新的vue3，遂改之。

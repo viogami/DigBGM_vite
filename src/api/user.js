@@ -11,8 +11,8 @@ function login (username) {
 function getUserAvatar (username, size) {
   return axios.get('/v0/users/' + username + '/avatar', {
     params: {
-      username,
-      size
+      username:username,
+      size:size
     }
   })
 }
@@ -20,11 +20,12 @@ function getUserAvatar (username, size) {
 //获得用户收藏信息
 function userFavorite (username,subject_type,type,limit,offset) {
   return axios.get('/v0/users/' + username+'/collections' , {
-    username, //必需
-    subject_type,
-    type,
-    limit,
-    offset,
+    params:{
+      subject_type:subject_type,
+      type:type,
+      limit:limit,
+      offset:offset,
+    }
   })
 }
 export { login, getUserAvatar , userFavorite }

@@ -13,11 +13,18 @@ import {
   Expand,
   Fold,
 } from '@element-plus/icons-vue'
+import {ElNotification} from "element-plus";
 
 //侧边栏折叠面板逻辑
 const isCollapse =  document.body.clientWidth<950 ? ref(true) : ref(false)
 const collapseMenu = () => {
   isCollapse.value = !isCollapse.value
+}
+
+const findType = (index) => {
+  if (index===1){
+    console.log('shuji')
+  }
 }
 
 </script>
@@ -35,28 +42,33 @@ const collapseMenu = () => {
       default-active="0"
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
+      @select="index => {ElNotification({
+          message: '查询类型已经切换到：' + index,
+          type: 'success',
+          duration: 2000 // 持续两秒
+        })}"
   >
-    <el-menu-item index="0">
+    <el-menu-item index="全部类型">
       <el-icon><icon-menu /></el-icon>
       <span>全部类型</span>
     </el-menu-item>
-    <el-menu-item index="1">
+    <el-menu-item index="书籍">
       <el-icon><reading /></el-icon>
       <span>书籍</span>
     </el-menu-item>
-    <el-menu-item index="2">
+    <el-menu-item index="动画">
       <el-icon><video-play /></el-icon>
       <span>动画</span>
     </el-menu-item>
-    <el-menu-item index="3" >
+    <el-menu-item index="音乐" >
       <el-icon><headset /></el-icon>
       <span>音乐</span>
     </el-menu-item>
-    <el-menu-item index="4">
+    <el-menu-item index="游戏">
       <el-icon><switch-filled /></el-icon>
       <span>游戏</span>
     </el-menu-item>
-    <el-menu-item index="6">
+    <el-menu-item index="三次元">
       <el-icon><avatar /></el-icon>
       <span>三次元</span>
     </el-menu-item>

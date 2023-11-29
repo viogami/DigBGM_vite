@@ -12,6 +12,11 @@ const activities = [
     icon: MoreFilled,
   },
   {
+    content: 'Update the userPage',
+    timestamp: '2023/11/29',
+    size: 'large'
+  },
+  {
     content: 'Build by Vite',
     timestamp: '2023/11/27',
     color: '#0bbd87',

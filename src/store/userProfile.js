@@ -6,7 +6,8 @@ const useUserStore = defineStore('userProfile', {
     nickname: '',
     avatarUrl: '',
     sign:'',
-    favorList: []
+    favorList: [],
+    favorList_max: 0
   }),
   actions: {
     // 定义一个动作用于设置用户信息
@@ -18,14 +19,16 @@ const useUserStore = defineStore('userProfile', {
     },
     // 添加收藏到数组中
     addFavorList(value) {
-      this.favorList.push(value);
+      if (this.favorList.length <= this.favorList_max){
+        this.favorList.push(value);
+      }
     },
     // 获取收藏数组
-    getFavorList(i) {
-      if ( i === 'all')
+    getFavorList(page,page_items) {
+      if ( page === 'all')
         return this.favorList;
       else 
-        return this.favorList.slice(8*i,8*i+8)
+        return this.favorList.slice(page_items*page,page_items*page+page_items)
     },
     
     // 修改信息

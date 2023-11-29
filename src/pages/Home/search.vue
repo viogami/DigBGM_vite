@@ -97,9 +97,11 @@ const SubjectForm = reactive({
 
 // 用户表单
 const UserForm = reactive({
-  username: ''
+  //默认输入violetmail
+  username: 'violetmail' 
 })
 
+//用户名规则验证器
 const UserFormValidator = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('Please input '))
