@@ -11,21 +11,21 @@ function login (username) {
 function getUserAvatar (username, size) {
   return axios.get('/v0/users/' + username + '/avatar', {
     params: {
-      username:username,
-      size:size
+      username,
+      size
     }
   })
 }
 
-//获得用户收藏信息
-function userFavorite (username,subject_type,type,limit,offset) {
-  return axios.get('/v0/users/' + username+'/collections' , {
-    params:{
-      subject_type:subject_type,
-      type:type,
-      limit:limit,
-      offset:offset,
+// 获得用户收藏信息
+function userFavorite (username, subject_type, type, limit, offset) {
+  return axios.get('/v0/users/' + username + '/collections', {
+    params: {
+      subject_type,
+      type,
+      limit,
+      offset
     }
   })
 }
-export { login, getUserAvatar , userFavorite }
+export { login, getUserAvatar, userFavorite }

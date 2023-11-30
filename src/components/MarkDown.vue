@@ -1,20 +1,19 @@
 <template>
   <div class="container0">
-    <el-col :xs="24" :sm="24" :md="24" :lg="20" :xl="18" v-html="parse()">
-    </el-col>
+    <el-col :xs="24" :sm="24" :md="24" :lg="20" :xl="18" v-html="parse()"/> <!-- eslint-disable-line -->
     <el-col :xs="0" :sm="0" :md="0" :lg="4" :xl="6" v-if="props.toc" >
 <!-- 右侧文章导航 -->
     <div  class="container1">
       <nav class="container2">
 <!-- 通过Vue.js的v-for指令，遍历tocList.c数组中的每个元素，item表示数组中的每个项目，i表示当前项目的索引。-->
-        <ul v-for="(item, i) in tocList.c">
+        <ul v-for="(item, i) in tocList.c" :key="item">
 <!-- text-emerald-grey类表示在悬停时文本颜色变为灰色。-->
 <!-- 动态绑定类名，如果tocIndex等于当前项的索引i，则添加text-emerald-black类，表示高亮当前选定的目录项。-->
           <li>
             <a class="text-emerald-grey" :class="{ 'text-emerald-pink': tocIndex === i }" @click="tocIndex = i"
                :href=getHref(item.n)> {{ item.n }} </a>
             <!-- 二级标题 -->
-            <ul v-for="(t, j) in item.c">
+            <ul v-for="(t, j) in item.c" :key="t">
               <li><a class="text-emerald-grey" :class="{ 'text-emerald-pink': tocIndex === (i + 1) * 1000 + j }"
                      @click="tocIndex = (i + 1) * 1000 + j" :href=getHref(t.n)> {{ t.n }}
               </a></li>
@@ -28,23 +27,23 @@
 </template>
 
 <script setup>
-import MarkDownIt from 'markdown-it';
-import prism from 'prismjs';
-import MarkDownDoneRight from 'markdown-it-toc-done-right';
-import uslug from 'uslug';
-import { ref } from 'vue';
-import anchor from "markdown-it-anchor";
+import MarkDownIt from 'markdown-it'
+import prism from 'prismjs'
+import MarkDownDoneRight from 'markdown-it-toc-done-right'
+import uslug from 'uslug'
+import { ref } from 'vue'
+import anchor from 'markdown-it-anchor'
 
 const props = defineProps({
   data: { type: String },
-  toc: { type: Boolean, default: false },
+  toc: { type: Boolean, default: false }
 })
 
-const tocList = ref([]);
-const tocIndex = ref(-1);
+const tocList = ref([])
+const tocIndex = ref(-1)
 
 const uslugify = (s) => {
-  return uslug(s);
+  return uslug(s)
 }
 
 const md = MarkDownIt({
@@ -52,19 +51,19 @@ const md = MarkDownIt({
   html: true,
   linkify: true,
   typographer: true,
-  highlight: (code, lang) => { //代码高亮
-    if (lang === 'golang') {  //golang简写为go
+  highlight: (code, lang) => { // 代码高亮
+    if (lang === 'golang') { // golang简写为go
       lang = 'go'
     }
 
     if (prism.languages[lang]) {
-      return prism.highlight(code, prism.languages[lang], lang);
+      return prism.highlight(code, prism.languages[lang], lang)
     } else {
-      return code;
+      return code
     }
   }
 }).use(anchor, {
-  permalink: anchor.permalink.ariaHidden({  //ARIA hidden
+  permalink: anchor.permalink.ariaHidden({ // ARIA hidden
     placement: 'before'
   })
 }).use(MarkDownDoneRight, {
@@ -104,15 +103,15 @@ const getHref = (target) => {
 }
 .container2{
   font-weight: 500;
-  line-height: 1.5; 
+  line-height: 1.5;
   border-style: solid;
   border-width: 0 0 0 4px;
   padding-left: 1rem;
-  margin-right: 2rem; 
+  margin-right: 2rem;
 }
 
 .text-emerald-grey{
-  color: grey; 
+  color: grey;
   :hover {
     color: #10B981;
   }

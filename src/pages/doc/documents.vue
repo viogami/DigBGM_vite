@@ -34,22 +34,22 @@
 </template>
 
 <script setup>
-import Header from "../Home/Header.vue";
-import { useRoute } from 'vue-router';
+import Header from '../Home/Header.vue'
+import { useRoute } from 'vue-router'
 
-const route = useRoute();
+const route = useRoute()
 
-//一级目录
+// 一级目录
 const menuList = [
   {
     name: '/docs/introduce',
     title: 'Introduce'
   }
 ]
-//二级目录
+// 二级目录
 const subMenuList = [
   {
-    name: "/Tech-Stack",
+    name: '/Tech-Stack',
     title: 'Tech Stack',
     children: [
       {
@@ -61,9 +61,9 @@ const subMenuList = [
         title: 'Back End'
       }
     ]
-  },
+  }
 ]
-//无子目录群
+// 无子目录群
 
 </script>
 

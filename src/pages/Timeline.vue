@@ -1,6 +1,6 @@
 <script setup>
-import Header from "./Home/Header.vue";
-import FooterPage from "./Home/footer.vue"
+import Header from './Home/Header.vue'
+import FooterPage from './Home/footer.vue'
 import { MoreFilled } from '@element-plus/icons-vue'
 
 const activities = [
@@ -9,7 +9,7 @@ const activities = [
     timestamp: '???',
     size: 'large',
     type: 'primary',
-    icon: MoreFilled,
+    icon: MoreFilled
   },
   {
     content: 'Update the userPage',
@@ -19,23 +19,23 @@ const activities = [
   {
     content: 'Build by Vite',
     timestamp: '2023/11/27',
-    color: '#0bbd87',
+    color: '#0bbd87'
   },
   {
     content: ' Update to Github',
     timestamp: '2023/10/25',
-    size: 'large',
+    size: 'large'
   },
   {
     content: ' Making sense of the Demand',
     timestamp: '2023/10/15',
     type: 'primary',
-    hollow: true,
+    hollow: true
   },
   {
     content: 'Initial this Project',
-    timestamp: '2023/10/10',
-  },
+    timestamp: '2023/10/10'
+  }
 ]
 </script>
 
@@ -61,7 +61,7 @@ const activities = [
   </el-timeline-item>
   </el-timeline>
   </el-row>
-  
+
   <footer-page/>
 </template>
 

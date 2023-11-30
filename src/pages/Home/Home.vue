@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import SearchPage from "./search.vue"
-import HeaderPage from "./Header.vue"
-import FooterPage from "./footer.vue"
+import SearchPage from './search.vue'
+import HeaderPage from './Header.vue'
+import FooterPage from './footer.vue'
 import { ref } from 'vue'
 import {
   Menu as IconMenu,
@@ -11,12 +11,12 @@ import {
   Avatar,
   Reading,
   Expand,
-  Fold,
+  Fold
 } from '@element-plus/icons-vue'
-import {ElNotification} from "element-plus";
+import { ElNotification } from 'element-plus'
 
-//侧边栏折叠面板逻辑
-const isCollapse =  document.body.clientWidth<950 ? ref(true) : ref(false)
+// 侧边栏折叠面板逻辑
+const isCollapse = document.body.clientWidth < 950 ? ref(true) : ref(false)
 const collapseMenu = () => {
   isCollapse.value = !isCollapse.value
 }
@@ -26,7 +26,7 @@ const collapseMenu = () => {
 <template>
 <!--页头-->
   <HeaderPage :menuIndex="'1'"/>
-  
+
 <!--侧边栏-->
 <el-container>
 <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
@@ -76,7 +76,7 @@ const collapseMenu = () => {
   </el-col>
 </el-main>
 </el-container>
-  
+
 <!--侧边栏放缩图标按钮-->
 <div class="collapseIcon">
   <div v-if="isCollapse">
@@ -90,7 +90,7 @@ const collapseMenu = () => {
     </el-icon>
   </div>
 </div>
-  
+
 <!--页脚-->
 <footer-page/>
 </template>
@@ -98,7 +98,7 @@ const collapseMenu = () => {
 <style scoped>
 
 .sidebar {
-  padding-bottom: 25px; 
+  padding-bottom: 25px;
 }
 
 .main-container {

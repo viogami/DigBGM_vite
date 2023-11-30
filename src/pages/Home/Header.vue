@@ -1,7 +1,7 @@
 <script setup>
-import github_icon from "../../assets/github-mark.svg";
+import github_icon from '../../assets/github-mark.svg'
 
-defineProps(['menuIndex'])  //定义props实现页面跳转 导航标签也跳转
+defineProps(['menuIndex']) // 定义props实现页面跳转 导航标签也跳转
 </script>
 
 <template>

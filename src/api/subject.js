@@ -7,4 +7,4 @@ function SearchSubject (keywords) {
   })
 }
 
-export { SearchSubject}
+export { SearchSubject }

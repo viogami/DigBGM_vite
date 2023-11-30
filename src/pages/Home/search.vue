@@ -55,7 +55,7 @@
     </el-collapse-item>
     </div>
     </el-collapse>
-    
+
   <p></p>
 <!--不同面板激活，按钮实行不同函数-->
 <el-button type="primary" round @click="activeNames.indexOf('1')!==-1 ? SubMit_subject() : SubMit_user()">查询</el-button>
@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts" setup >
-import { login, userFavorite} from '../../api/user' // login方法 userFavorite方法
+import { login } from '../../api/user' // login方法
 import { SearchSubject } from '../../api/subject' // Search方法
 import { reactive, ref } from 'vue'
 // 引入Vue Router
@@ -72,8 +72,8 @@ import { useRouter } from 'vue-router'
 // ele组件
 import type { FormProps } from 'element-plus'
 import { ElNotification } from 'element-plus'
-import { UserFilled } from "@element-plus/icons-vue";
-//引入store
+import { UserFilled } from '@element-plus/icons-vue'
+// 引入store
 import { useUserStore } from '../../store/userProfile.js'
 
 // 获取路由实例
@@ -97,11 +97,11 @@ const SubjectForm = reactive({
 
 // 用户表单
 const UserForm = reactive({
-  //默认输入violetmail
-  username: 'violetmail' 
+  // 默认输入violetmail
+  username: 'violetmail'
 })
 
-//用户名规则验证器
+// 用户名规则验证器
 const UserFormValidator = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('Please input '))
@@ -143,7 +143,7 @@ const SubMit_subject = () => {
 }
 // 用户查询按钮
 const UserFormRef = ref()
-//实例用户仓库
+// 实例用户仓库
 const userProfile = useUserStore()
 const SubMit_user = () => {
   // 用户表单验证
@@ -151,15 +151,15 @@ const SubMit_user = () => {
     if (valid) {
       // 根据响应中的信息判断是否是 Bangumi 用户
       login(UserForm.username)
-        .then(res => { 
+        .then(res => {
           // 如果是 Bangumi 用户，跳转到 Bangumi 用户页面
           router.push({
             name: 'UserPage',
-            params: { username: UserForm.username },
+            params: { username: UserForm.username }
           })
-          //设置用户信息
-          userProfile.setUserInfo(res.data.username,res.data.nickname,res.data.avatar.large,res.data.sign)
-          //显示登陆通知
+          // 设置用户信息
+          userProfile.setUserInfo(res.data.username, res.data.nickname, res.data.avatar.large, res.data.sign)
+          // 显示登陆通知
           ElNotification({
             message: '欢迎，' + res.data.nickname + '!', // 获取昵称
             type: 'success',
