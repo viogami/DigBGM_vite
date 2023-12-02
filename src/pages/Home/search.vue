@@ -89,7 +89,7 @@ const labelPosition = ref<FormProps['labelPosition']>('top')
 
 // 条目表单
 const SubjectForm = reactive({
-  keywords: 'Nier',
+  keywords: 'Nier'
 })
 
 // 用户表单
@@ -117,7 +117,7 @@ const rules = {
 }
 // 条目查询按钮
 const SubjectFormRef = ref()
-const searchRes = useSearchStore() //使用查询结果的store，读取查询类型
+const searchRes = useSearchStore() // 使用查询结果的store，读取查询类型
 
 const responseGroup = 'small'
 const start = 0
@@ -125,10 +125,10 @@ const max_results = 25
 const SubMit_subject = () => {
 // 条目查询不为空
   if (SubjectForm.keywords !== '') {
-    SearchSubject(SubjectForm.keywords,searchRes.getSearchType(),responseGroup,start,max_results)
+    SearchSubject(SubjectForm.keywords, searchRes.getSearchType(), responseGroup, start, max_results)
       .then(res_sub => { // 注，请求的返回值res
         ElNotification({
-          message: '成功查询'+SubjectForm.keywords+'！共有' + res_sub.data.results + '个'+searchRes.searchType+'条目！',
+          message: '成功查询' + SubjectForm.keywords + '！共有' + res_sub.data.results + '个' + searchRes.searchType + '条目！',
           type: 'success',
           duration: 2000 // 持续两秒
         })

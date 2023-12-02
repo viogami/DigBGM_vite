@@ -50,12 +50,12 @@ const md = MarkDownIt({
   breaks: true,
   html: true,
   linkify: true,
-  typographer: true, 
+  typographer: true,
   highlight: (code, lang) => { // 代码高亮
     if (lang === 'golang') { // golang简写为go
       lang = 'go'
     }
-    
+
     if (prism.languages[lang]) {
       return prism.highlight(code, prism.languages[lang], lang)
     } else {
@@ -86,7 +86,6 @@ const parse = () => {
 const getHref = (target) => {
   return '#' + uslug(target)
 }
-
 
 </script>
 

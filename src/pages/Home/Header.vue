@@ -10,7 +10,7 @@ defineProps(['menuIndex']) // 定义props实现页面跳转 导航标签也跳�
       <el-row>
         <el-col :xs="8" :sm="6" :md="6" :lg="6" :xl="6">
           <router-link to="/" >
-            <h2 style="color: pink;">DigBGM</h2>
+            <h1 style="color: pink;">DigBGM</h1>
           </router-link>
         </el-col>
 
