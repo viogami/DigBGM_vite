@@ -1,9 +1,9 @@
 <template>
 <!-- 文章内容界面 -->
-<div class="article-page" >
+<div class="w-full" >
   <article style="padding-left: 16px;padding-right: 16px;">
     <div class="prose w-full">
-      <h1 style=" margin-top: 1.5rem; margin-bottom: 1.5rem;"> {{ title }} </h1>
+      <h2 class="my-6"> {{ title }} </h2>
       <div v-if="date" style="margin-bottom: 1rem;"> {{ date }} </div>
     </div>
     <!--  使用markdown编辑器  -->
@@ -32,8 +32,8 @@ const parse = (content) => {
   }
   // 使用 front-matter 库解析 Markdown 内容，将结果存储在 page 变量中
   const page = fm(content)
-  /* 将 page.body 中的 Markdown 内容存储到 data 变量中，并通过正则表达式替换掉所有以 # 开头的行。
- 这是为了移除 Markdown 内容中的第一个标题。目的是为了避免在页面中重复显示标题。 */
+  /* 将 page是.body 中的 Markdown 内容存储到 data 变量中，并通过正则表达式替换掉所有以 # 开头的行。
+ 这是为了移除 Markdown 内容中的第一个标题。目的为了避免在页面中重复显示标题。 */
   data.value = page.body.replace(/#.+\n/, '')
   // 如果 title 变量为空，将元数据中的标题存储到 title 中
   if (!title.value) {
@@ -80,10 +80,4 @@ onMounted(
 </script>
 
 <style scoped>
-.article-page{
-  display: flex;
-  flex-direction: column;
-  width: 85%; /*doc文字页面宽度*/
-  text-align: start;
-}
 </style>

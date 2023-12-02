@@ -4,19 +4,17 @@
 
 <template>
   <el-footer class="footer">
-    <p>© 2023 DigBGM by <a href="https://github.com/viogami">viogami</a></p>
+    © 2023 DigBGM by <a href="https://github.com/viogami">viogami</a>
   </el-footer>
 </template>
 
 <style scoped>
-/* 页脚紧贴页面下沿 */
+
 .footer {
-  bottom: 0;
-  margin-block-end: 0;
-  width: 100%;
   background: pink;
   text-align: center;
   line-height: 60px;
+  margin-top: 40px /* 页脚贴页面下沿 */
 }
 .footer a {
   text-decoration: none; /* 取消链接的下划线 */

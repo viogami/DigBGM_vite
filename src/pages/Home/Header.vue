@@ -43,10 +43,10 @@ defineProps(['menuIndex']) // 定义props实现页面跳转 导航标签也跳�
       </el-row>
     </el-header>
     <!--分割线-->
-    <el-divider />
+    <el-divider style="margin-bottom: 0;" />
   </el-container>
 </template>
 
-<style scoped>
+<style>
 
 </style>
