@@ -19,7 +19,7 @@ const count = ref(0)
 
     <h1> 更新日志 </h1>
     <p>2023/12/2</p>
-    <p>更新了doc文档显示，更加符合视觉。添加了条件搜索，增加了默认搜索信息。注意到,bangumiAPI最多返回1000条查询信息。</p>
+    <p>更新了doc文档显示，更加符合视觉(CSS真是逆天玩意，调了我半天)。添加了条件搜索，增加了默认搜索信息。注意到,bangumiAPI每次最多返回1000条查询信息。</p>
     <p>2023/11/29</p>
     <p>更新了用户收藏信息的调用算法，用缓存和阶段调用加速了翻页体验，并完善了响应式布局</p>
     <p>2023/11/26</p>
@@ -59,19 +59,6 @@ const count = ref(0)
   text-align: center;
   flex: 1;
   padding-bottom: 60px; /* 底部内边距，确保内容不会被页脚遮挡 */
-}
-
-h1 {
-  color: #808080;
-}
-
-p {
-  margin-bottom: 10px;
-}
-
-a {
-  color: #007BFF;
-  text-decoration: none;
 }
 
 .card {

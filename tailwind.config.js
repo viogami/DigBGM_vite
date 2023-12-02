@@ -2,12 +2,13 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{html,vue,js,css}"],
+    "./src/**/*.{html,vue,js,css}",
+    "./src/**/**/*.{html,vue,js,css}"],
   theme: {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    '@tailwindcss/typography', //tailwind插件位置
   ],
 }
 

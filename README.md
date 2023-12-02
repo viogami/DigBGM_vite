@@ -50,22 +50,19 @@
 - 创建一个axios.js文件
 - 新建user.js等文件，用处定义调用api的函数
 
-### 代码块测试
+## 附件
+### 代码块样式测试
 ```go
 func main() {
 	gin.SetMode(gin.DebugMode)
-
 	// 创建一个 Gin 引擎
 	r := gin.Default()
-
-
 	// 定义一个路由
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Hello, Gin! i love",
 		})
 	})
-
 	// 启动服务
 	r.Run("127.0.0.1:8080")
 }

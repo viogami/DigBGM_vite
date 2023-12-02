@@ -1,7 +1,7 @@
 <template>
-  <div class="container0">
+  <div class="container0" >
     <el-col :xs="24" :sm="24" :md="20" :lg="20" :xl="20" v-html="parse()"/> <!-- eslint-disable-line -->
-    <el-col :xs="0" :sm="0" :md="4" :lg="4" :xl="4" v-if="props.toc" >
+    <el-col :xs="0" :sm="0" :md="4" :lg="4" :xl="4"  v-if="props.toc" >
 <!-- 右侧文章导航 -->
     <div  class="container1">
       <nav class="no-scrollbar font-medium leading-loose border-solid border-l-4 pl-4 mr-8">
@@ -50,12 +50,12 @@ const md = MarkDownIt({
   breaks: true,
   html: true,
   linkify: true,
-  typographer: true,
+  typographer: true, 
   highlight: (code, lang) => { // 代码高亮
     if (lang === 'golang') { // golang简写为go
       lang = 'go'
     }
-
+    
     if (prism.languages[lang]) {
       return prism.highlight(code, prism.languages[lang], lang)
     } else {
@@ -87,6 +87,7 @@ const getHref = (target) => {
   return '#' + uslug(target)
 }
 
+
 </script>
 
 <style scoped>
@@ -94,6 +95,7 @@ const getHref = (target) => {
   display: flex;
   flex-direction: row;
   margin-left: 15px;
+  overflow: hidden;
 }
 .container1{
   position: fixed;
@@ -109,7 +111,5 @@ const getHref = (target) => {
 .text-emerald-pink{
   color: pink;
 }
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+
 </style>

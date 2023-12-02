@@ -1,14 +1,14 @@
 <template>
 <!-- 文章内容界面 -->
-<div class="w-full" >
-  <article style="padding-left: 16px;padding-right: 16px;">
+<div style="width: 85%">
+  <div style="padding-left: 25px;padding-right: 16px;">
     <div class="prose w-full">
-      <h2 class="my-6"> {{ title }} </h2>
+      <h1> {{ title }} </h1>
       <div v-if="date" style="margin-bottom: 1rem;"> {{ date }} </div>
     </div>
     <!--  使用markdown编辑器  -->
     <MarkDown class="w-full mt-4 mb-8" :data="data" toc></MarkDown>
-  </article>
+  </div>
 </div>
 </template>
 <script setup>
