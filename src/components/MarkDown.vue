@@ -1,10 +1,10 @@
 <template>
   <div class="container0">
-    <el-col :xs="24" :sm="24" :md="24" :lg="20" :xl="18" v-html="parse()"/> <!-- eslint-disable-line -->
-    <el-col :xs="0" :sm="0" :md="0" :lg="4" :xl="6" v-if="props.toc" >
+    <el-col :xs="24" :sm="24" :md="20" :lg="20" :xl="20" v-html="parse()"/> <!-- eslint-disable-line -->
+    <el-col :xs="0" :sm="0" :md="4" :lg="4" :xl="4" v-if="props.toc" >
 <!-- 右侧文章导航 -->
     <div  class="container1">
-      <nav class="container2">
+      <nav class="no-scrollbar font-medium leading-loose border-solid border-l-4 pl-4 mr-8">
 <!-- 通过Vue.js的v-for指令，遍历tocList.c数组中的每个元素，item表示数组中的每个项目，i表示当前项目的索引。-->
         <ul v-for="(item, i) in tocList.c" :key="item">
 <!-- text-emerald-grey类表示在悬停时文本颜色变为灰色。-->
@@ -93,34 +93,23 @@ const getHref = (target) => {
 .container0{
   display: flex;
   flex-direction: row;
-  margin-left: 12px;
+  margin-left: 15px;
 }
 .container1{
   position: fixed;
-  top: 100px;
+  top: 110px;
   bottom: 0;
-  right: 20px;
-}
-.container2{
-  font-weight: 500;
-  line-height: 1.5;
-  border-style: solid;
-  border-width: 0 0 0 4px;
-  padding-left: 1rem;
-  margin-right: 2rem;
+  right: 100px;
 }
 
 .text-emerald-grey{
   color: grey;
-  :hover {
-    color: #10B981;
-  }
 }
 
 .text-emerald-pink{
   color: pink;
-  :hover {
-    color: #10B981;
-  }
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 </style>

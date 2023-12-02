@@ -19,7 +19,7 @@ const pages = {
   },
   frontend: {
     title: 'Front End',
-    content: '这将介绍前端技术栈'
+    content: '这将介绍前端技术栈 '
   },
   backend: {
     title: 'Back End',

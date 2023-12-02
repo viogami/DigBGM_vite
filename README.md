@@ -9,11 +9,11 @@
 
 <p> 目前正在严峻开发中，兴趣项目<s>（精力有限）</s> </p>
 
-<p> 你可以访问它的 GitHub 仓库地址：<a href="https://github.com/viogami/vite_DigBgm" target="_blank">DigBgm_vite</a> </p>
+<p> 你可以访问它的 GitHub 仓库地址：<a href="https://github.com/viogami/DigBGM_vite" target="_blank">DigBgm_vite</a> </p>
 
 ## 首页面预览
 
-<img src="public/preview.png" alt="预览页面">
+![preview](https://github.com/viogami/DigBGM_vite/raw/main/public/preview.png)
 
 ## 前言
 初次尝试web开发，兴趣使然，事务繁多，这个项目的开发很是缓慢的
@@ -22,10 +22,10 @@
 
 后端通过[bangumi API][1]调用。
 
-该项目完全个人做全栈开发，不讲究界面设计了，css太困难。完全新手项目，我写了大量注释，每个文件和功能我也会具体介绍，也可以作为简单的vue3上手材料。
+该项目完全个人做全栈开发，不讲究界面设计了，css太困难，后面改用了`tailwindCSS`。我写了大量注释，每个文件和功能我也会具体介绍，也可以作为简单的vue3上手材料。
 
 ## 功能详解
-### 首页(Home.vue)
+### 首页
 - 页头导航，用props实现不同页面时，导航的显示位置
 - 侧边栏收放和页面响应式设计(用`el-col`，自带响应式)
 - 文档显示功能
@@ -36,14 +36,15 @@
   最后再定义一个`markdown.vue`组件执行编译markdown文本，这个组件是仿用了别人的项目。
 - 时间线，关于页面的简单路由，以及404页面的路由
 
-### 用户页(UserPage.vue)
+### 用户页
 - 通过搜索用户名进入用户页(以后可能变动)
 - 显示用户的基本信息，创建一个卡片，显示用户的收藏
 - 用pinia的一个store存放所有用户信息(userProfile.js),在其中定义增删查改。
 
-### 搜索(search.vue)
+### 搜索
 - 用户查询
-- 条目搜索(目前只返回了数量)
+- 条目搜索
+- 条件搜索
 
 ### 调用api
 - 创建一个axios.js文件

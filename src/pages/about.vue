@@ -9,6 +9,7 @@ const count = ref(0)
 <template>
 <!-- 添加页头 -->
   <Header :menu-index="'4'"/>
+  <div style="height: calc(100vh - 130px); overflow-y: auto;">
 <!-- 关于页面 -->
   <div class="about-container">
     <h2>
@@ -17,23 +18,21 @@ const count = ref(0)
     </h2>
 
     <h1> 更新日志 </h1>
+    <p>2023/12/2</p>
+    <p>更新了doc文档显示，更加符合视觉。添加了条件搜索，增加了默认搜索信息。注意到,bangumiAPI最多返回1000条查询信息。</p>
     <p>2023/11/29</p>
     <p>更新了用户收藏信息的调用算法，用缓存和阶段调用加速了翻页体验，并完善了响应式布局</p>
-
     <p>2023/11/26</p>
     <p>前端基本首页做完了(基本能看)，现在就是功能逻辑了，用户的功能也大差不大了，项目准备build发布一次，后续开发一下检索的功能，并开发后端和数据库，进行数据处理。</p>
-
     <p>2023/11/16</p>
     <p>决定还是做一下后端，参考了一个vue3+go的项目[weave]。
       最近换了rider做IDE，主要U3D不想用vs2019了，太重了，整体。Rider也支持vite开发(说是支持web全栈),但他的js只支持到ES6，所以新的函数在里面会报错(比如includes，ES7的)。但是UI，代码检查等IDE整体设计我还是挺喜欢的。</p>
-
     <p>2023/11/16</p>
     <p> 搞清楚了bangumi的API是怎么在vue中用axios的get和post请求调用的。输入用户名或者各种搜索条件可以获取到相应的数据了，下一步做一个数据获取并缓存的方法，减少加载时间，然后完善功能吧。
      页面前端也不讲究太多了，能用就行。</p>
     <p>2023/10/26</p>
     <p> 今天发现之前是基于vue2的，用的是vue官方vue-cli脚手架，现在更推荐使用vite，仅支持更新的vue3，遂改之。
       elementui也更新为element-plus仅用于支持vue3。vite不用全局安装，较为轻量。有了以前摸索的基础，下载了路由组件和element-plus，迅速就搭建好了空项目。</p>
-
     <p>2023/10/10</p>
     <p>
       个人作全栈开发，用vue这种较为轻量的前端开发框架。目前决定使用vue3+element-plus做前端。
@@ -48,6 +47,7 @@ const count = ref(0)
   </div>
 
   <footer-page/>
+  </div>
 </template>
 
 <style scoped>

@@ -1,11 +1,12 @@
 <template>
-<div style="display: flex; flex-direction: column;">
 <!-- 文章主组件，负责显示页面，文章列表，文章点击路由 -->
 <!--  导航  -->
+  <el-container>
 <Header :menu-index="'2'"/>
+  </el-container>
   <!--  定义文章列表显示模式  -->
-  <div class="container">
-    <el-col :xs="8" :sm="6" :md="4" :lg="4" :xl="4" style="display: flex;flex: 1;">
+<el-container>
+    <el-col :xs="8" :sm="6" :md="4" :lg="4" :xl="4">
       <el-menu class="article-menu" router>
         <!-- 一级目录 -->
         <el-menu-item :index="menu.name" v-for="menu in menuList" :key="menu.title">
@@ -26,11 +27,11 @@
       </el-menu>
     </el-col>
 
-    <el-col :xs="16" :sm="18" :md="20" :lg="20" :xl="20">
+    <el-col class="article-main" :xs="16" :sm="18" :md="20" :lg="20" :xl="20">
       <router-view :key=route.path />
     </el-col>
-  </div>
-</div>
+</el-container>
+
 </template>
 
 <script setup>
@@ -68,18 +69,19 @@ const subMenuList = [
 </script>
 
 <style scoped>
-.container{
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  text-align: start;
-}
 .article-menu{
   padding-top: 1rem;
   padding-bottom: 1rem;
-  flex-grow: 1;
-  overflow-x: hidden;
   font-weight: bold;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: calc(100vh - 130px);
+
+}
+
+.article-main {
+  height: calc(100vh - 130px);
+  overflow-y: auto
 }
 
 </style>

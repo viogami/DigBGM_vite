@@ -2,13 +2,12 @@
 <!-- 文章内容界面 -->
 <div class="article-page" >
   <article style="padding-left: 16px;padding-right: 16px;">
-    <div style="line-height: 1.6;
-                font-size: 1.125rem;">
+    <div class="prose w-full">
       <h1 style=" margin-top: 1.5rem; margin-bottom: 1.5rem;"> {{ title }} </h1>
       <div v-if="date" style="margin-bottom: 1rem;"> {{ date }} </div>
     </div>
     <!--  使用markdown编辑器  -->
-    <MarkDown style="margin-top: 16px;margin-bottom: 32px;" :data="data" toc></MarkDown>
+    <MarkDown class="w-full mt-4 mb-8" :data="data" toc></MarkDown>
   </article>
 </div>
 </template>

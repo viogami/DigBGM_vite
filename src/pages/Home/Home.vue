@@ -2,6 +2,7 @@
 import SearchPage from './search.vue'
 import HeaderPage from './Header.vue'
 import FooterPage from './footer.vue'
+import { useSearchStore } from '../../store/searchRes'
 import { ref } from 'vue'
 import {
   Menu as IconMenu,
@@ -20,7 +21,7 @@ const isCollapse = document.body.clientWidth < 950 ? ref(true) : ref(false)
 const collapseMenu = () => {
   isCollapse.value = !isCollapse.value
 }
-
+const searchRes = useSearchStore()
 </script>
 
 <template>
@@ -36,7 +37,9 @@ const collapseMenu = () => {
       default-active="全部类型"
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
-      @select="index => {ElNotification({
+      @select="index => {
+        searchRes.searchType=index
+        ElNotification({
           message: '查询类型已经切换到：' + index,
           type: 'success',
           duration: 2000 // 持续两秒

@@ -12,6 +12,12 @@ const activities = [
     icon: MoreFilled
   },
   {
+    content: 'Add the search function',
+    timestamp: '2023/12/2',
+    type: 'primary',
+    size: 'normal'
+  },
+  {
     content: 'Update the userPage',
     timestamp: '2023/11/29',
     size: 'large'
