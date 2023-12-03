@@ -10,7 +10,7 @@ defineProps(['menuIndex']) // 定义props实现页面跳转 导航标签也跳�
       <el-row>
         <el-col :xs="8" :sm="6" :md="6" :lg="6" :xl="6">
           <router-link to="/" >
-            <h1 style="color: pink;">DigBGM</h1>
+            <h2 style="color: pink;">DigBGM</h2>
           </router-link>
         </el-col>
 
@@ -32,8 +32,8 @@ defineProps(['menuIndex']) // 定义props实现页面跳转 导航标签也跳�
         </el-col>
 
         <el-col :xs="2" :sm="4" :md="4" :lg="4" :xl="4" >
-          <ul>
-          <el-button>
+          <ul style="width: 50px">
+          <el-button >
             <a href="https://github.com/viogami/DigBGM_vite" target="_blank">
               <img :src="github_icon" alt="GitHub Icon" width="18" height="18" />
             </a>

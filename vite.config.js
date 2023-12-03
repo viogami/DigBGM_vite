@@ -14,14 +14,13 @@ export default ({ mode }) => {
         plugins: [
           'line-numbers', // 在代码块中显示行号
           'show-language', // 在代码块中显示代码块对应语言的名称
-          'copy-to-clipboard', // 添加一个按钮，可以在单击时将代码块内容复制到剪贴板
-          'inline-color'
+          'copy-to-clipboard'// 添加一个按钮，可以在单击时将代码块内容复制到剪贴板
         ],
         theme: 'tomorrow',
         css: true
       })
     ],
-    envPrefix,
+    envPrefix: envPrefix,
     server: {
       proxy: { // 使用 proxy 实例
         '/api': {
