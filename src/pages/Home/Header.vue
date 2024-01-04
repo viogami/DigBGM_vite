@@ -50,7 +50,7 @@
                   </el-dropdown-item>
                 </el-dropdown-menu>
                 <el-dropdown-menu>
-                  <el-dropdown-item v-if="!username"  @click="router.push('/login')">
+                  <el-dropdown-item v-if="userProfile.username === ''"  @click="router.push('/login')">
                     <el-icon><Promotion /></el-icon>
                     LogIn
                   </el-dropdown-item >
@@ -77,6 +77,7 @@ import {ElMessage, ElNotification} from "element-plus";
 import router from "../../router/index.js";
 // 引入store
 import { useUserStore } from '../../store/userProfile.js'
+import {ref} from "vue";
 
 defineProps(['menuIndex']) // 定义props实现页面跳转 导航标签也跳转
 

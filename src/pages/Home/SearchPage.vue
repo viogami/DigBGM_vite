@@ -43,14 +43,6 @@
          </template>
         </el-input>
       </el-form-item>
-<!-- 密码输入（api没有，无用）
-      <el-form-item label="你的密码" prop="password">
-        <el-input v-model="UserForm.password"
-        type="password"
-        placeholder="Please input password"
-        show-password/>
-      </el-form-item>
--->
     </el-form>
     </el-collapse-item>
     </div>
@@ -72,13 +64,14 @@ import { useRouter } from 'vue-router'
 // ele组件
 import type { FormProps } from 'element-plus'
 import { ElNotification } from 'element-plus'
-import { UserFilled } from '@element-plus/icons-vue'
+import { UserFilled,Search } from '@element-plus/icons-vue'
 // 引入store
 import { useUserStore } from '../../store/userProfile.js'
 import { useSearchStore } from '../../store/searchRes'
 
 // 获取路由实例
 const router = useRouter()
+
 // 折叠面板
 const activeNames = ref(['1'])
 const handleCollapseChange = (activeNames) => {
