@@ -5,9 +5,9 @@
 <a href="http://digbgm.masterkagami.com/" rel="nofollow">演示地址Demo</a>
 
 <p> 前端使用 Vue3 和 Element Plus 进行构建，让你在使用该工具的同时享受良好的用户体验。
-    后端使用golang的GIN框架，简单尝试中，本仓库只提交前端代码 </p>
+    后端使用golang的GIN框架，简单尝试中，本仓库只提交前端代码，后端在搭建中，完善后会全部移放到后端仓库中</p>
 
-<p> 目前正在严峻开发中，兴趣项目<s>（精力有限）</s> </p>
+<p> 目前正在仍在开发中，兴趣项目<s>（精力有限）</s> </p>
 
 <p> 你可以访问它的 GitHub 仓库地址：<a href="https://github.com/viogami/DigBGM_vite" target="_blank">DigBgm_vite</a> </p>
 
@@ -16,8 +16,6 @@
 ![preview](https://github.com/viogami/DigBGM_vite/raw/main/public/preview.png)
 
 ## 前言
-初次尝试web开发，兴趣使然，事务繁多，这个项目的开发很是缓慢的
-
 使用**vue3**，目前我希望可以通过自助调用bangumi的api完成一个全自动的数据采集并执行算法。
 
 后端通过[bangumi API][1]调用。
@@ -35,9 +33,11 @@
  `docPage.vue`是负责调用markdown工具进行编译，返回编译后的数据。`docCat.vue`是文章的目录文件也是路由进行匹配的文件，负责导入文章并实现文章路由。
   最后再定义一个`markdown.vue`组件执行编译markdown文本，这个组件是仿用了别人的项目。
 - 时间线，关于页面的简单路由，以及404页面的路由
+- 登陆注册功能，连接后端数据库，存储用户名和密码
 
 ### 用户页
-- 通过搜索用户名进入用户页(以后可能变动)
+- 有两种登陆方式，注册后用用户名和密码，或者直接使用bangumi的用户名登陆
+- 通过菜单栏可以进入用户页
 - 显示用户的基本信息，创建一个卡片，显示用户的收藏
 - 用pinia的一个store存放所有用户信息(userProfile.js),在其中定义增删查改。
 
@@ -50,21 +50,5 @@
 - 创建一个axios.js文件
 - 新建user.js等文件，用处定义调用api的函数
 
-## 附件
-### 代码块样式测试
-```go
-func main() {
-	gin.SetMode(gin.DebugMode)
-	// 创建一个 Gin 引擎
-	r := gin.Default()
-	// 定义一个路由
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello, Gin! i love",
-		})
-	})
-	// 启动服务
-	r.Run("127.0.0.1:8080")
-}
-```
+
 [1]: https://bangumi.github.io/api/#/

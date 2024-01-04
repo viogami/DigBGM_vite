@@ -77,7 +77,6 @@ import {ElMessage, ElNotification} from "element-plus";
 import router from "../../router/index.js";
 // 引入store
 import { useUserStore } from '../../store/userProfile.js'
-import {ref} from "vue";
 
 defineProps(['menuIndex']) // 定义props实现页面跳转 导航标签也跳转
 
@@ -124,7 +123,7 @@ function toUserInfo() {
   }
   else
     ElMessage({
-      message: 'Please login fist',
+      message: 'Please login first',
       type: 'warning',
       duration: 2000,
     })

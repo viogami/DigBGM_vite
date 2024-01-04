@@ -12,6 +12,13 @@ const activities = [
     icon: MoreFilled
   },
   {
+    content: 'Add the sign up ',
+    timestamp: '2024/1/4',
+    size: 'normal',
+    type: 'primary',
+    hollow: true
+  },
+  {
     content: 'Add the search function',
     timestamp: '2023/12/2',
     type: 'primary',
