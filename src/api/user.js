@@ -1,7 +1,7 @@
 import axios from '../utils/axios.js'
 
 // get用户信息的函数
-function login (username) {
+function BangumiLogin (username) {
   return axios.get('/v0/users/' + username, {
     username
   })
@@ -28,4 +28,4 @@ function userFavorite (username, subject_type, type, limit, offset) {
     }
   })
 }
-export { login, getUserAvatar, userFavorite }
+export { BangumiLogin, getUserAvatar, userFavorite }

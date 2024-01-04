@@ -5,9 +5,11 @@ import timeline from '../pages/Timeline.vue'
 import UserPage from '../pages/UserPage.vue'
 import docs from '../pages/doc/documents.vue'
 import docCat from '../pages/doc/docCat.vue'
+import login from "../pages/login.vue"; 
 
 const routes = [
-  { path: '/', component: home }, //  登陆页面
+  { path: '/', component: home }, //  首页
+  { path: '/login', component: login }, //  登陆
   { path: '/about', component: about }, //  关于页面
   { path: '/user/:username', name: 'UserPage', component: UserPage }, // 使用动态路由创建用户界面
   { path: '/timeline', component: timeline }, // 时间线界面

@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts" setup >
-import { login } from '../../api/user' // login方法
+import { BangumiLogin } from '../../api/user' // login方法
 import { SearchSubject } from '../../api/subject' // Search方法
 import { reactive, ref } from 'vue'
 // 引入Vue Router
@@ -152,7 +152,7 @@ const SubMit_user = () => {
   UserFormRef.value.validate(async (valid) => {
     if (valid) {
       // 根据响应中的信息判断是否是 Bangumi 用户
-      login(UserForm.username)
+      BangumiLogin(UserForm.username)
         .then(res => {
           // 如果是 Bangumi 用户，跳转到 Bangumi 用户页面
           router.push({

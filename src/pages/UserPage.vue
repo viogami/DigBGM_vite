@@ -61,27 +61,19 @@ const type = '' // 1: 想看 2: 看过 3: 在看 4: 搁置 5: 抛弃
 const errorHandler = () => true // 头像加载失败
 
 // 获取用户收藏,首次获取三页，避免的翻页加载等待(翻页获取的为下下页)
-userFavorite(username, subject_type, type, 24).then(res => {
-  userProfile.favorList = [] // 先清空，防止旧数据冗余
-  userProfile.favorList_max = res.data.total
-  // 循环res中收藏列表插入到store的favorlist中
-  for (let item = 0; item < res.data.data.length; item++) {
-    const name_cn = res.data.data[item].subject.name_cn
-    name_cn === '' ? userProfile.addFavorList(res.data.data[item].subject.name) : userProfile.addFavorList(name_cn)
-  }
-  ElNotification({
-    message: '该用户共有' + res.data.total + '个收藏条目!',
-    type: 'success',
-    duration: 2000 // 持续两秒
-  })
+userFavorite(username, subject_type, type, 24)
+    .then(res => {
+      userProfile.favorList = [] // 先清空，防止旧数据冗余
+      userProfile.favorList_max = res.data.total
+      // 循环res中收藏列表插入到store的favorlist中
+      for (let item = 0; item < res.data.data.length; item++) {
+        const name_cn = res.data.data[item].subject.name_cn
+        name_cn === '' ? userProfile.addFavorList(res.data.data[item].subject.name) : userProfile.addFavorList(name_cn)
+      }
+      eleNotice('success','该用户共有' + res.data.total + '个收藏条目!')
 })
   .catch(err => {
-    ElNotification({
-      title: 'ERROR',
-      message: '用户收藏请求失败~\n' + err.response.data.description,
-      type: 'error',
-      duration: 2000 // 持续两秒
-    })
+    eleNotice('error','用户收藏请求失败~\n' + err.response.data.description)
   })
 
 // 定义页数，用于返回下一页用户收藏
@@ -98,12 +90,42 @@ const nextPage = (page) => {
         }
       })
       .catch(err => {
-        ElNotification({
-          title: 'ERROR',
-          message: '收藏请求出现错误~\n' + err.response.data.description,
-          type: 'error',
-          duration: 2000 // 持续两秒
-        })
+        eleNotice('error','收藏请求出现错误~\n' + err.response.data.description)
+      })
+  }
+}
+// 通知显示函数
+function eleNotice(type,msg){
+  switch (type) {
+    case 'success':
+      ElNotification({
+            message: msg,
+            type: 'success',
+            duration: 2000
+          }
+      )
+      break
+    case 'warning':
+      ElMessage({
+        message: msg,
+        type: 'warning',
+        duration: 2000,
+      })
+      break
+    case 'error':
+      ElNotification({
+        title: 'ERROR',
+        message: msg,
+        type: 'error',
+        duration: 2000
+      })
+      break
+    default:
+      ElNotification({
+        title: 'ERROR',
+        message: 'please input correct notice type ,it`s a string',
+        type: 'error',
+        duration: 2000
       })
   }
 }

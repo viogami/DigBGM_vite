@@ -1,29 +1,3 @@
-<script lang="ts" setup>
-import SearchPage from './search.vue'
-import HeaderPage from './Header.vue'
-import FooterPage from './footer.vue'
-import { useSearchStore } from '../../store/searchRes'
-import { ref } from 'vue'
-import {
-  Menu as IconMenu,
-  Headset,
-  SwitchFilled,
-  VideoPlay,
-  Avatar,
-  Reading,
-  Expand,
-  Fold
-} from '@element-plus/icons-vue'
-import { ElNotification } from 'element-plus'
-
-// 侧边栏折叠面板逻辑
-const isCollapse = document.body.clientWidth < 950 ? ref(true) : ref(false)
-const collapseMenu = () => {
-  isCollapse.value = !isCollapse.value
-}
-const searchRes = useSearchStore()
-</script>
-
 <template>
 <!--页头-->
   <HeaderPage :menuIndex="'1'"/>
@@ -97,6 +71,34 @@ const searchRes = useSearchStore()
 <!--页脚-->
 <footer-page/>
 </template>
+
+
+<script lang="ts" setup>
+import SearchPage from './SearchPage.vue'
+import HeaderPage from './Header.vue'
+import FooterPage from './footer.vue'
+import { useSearchStore } from '../../store/searchRes'
+import { ref } from 'vue'
+import {
+  Menu as IconMenu,
+  Headset,
+  SwitchFilled,
+  VideoPlay,
+  Avatar,
+  Reading,
+  Expand,
+  Fold
+} from '@element-plus/icons-vue'
+import { ElNotification } from 'element-plus'
+
+// 侧边栏折叠面板逻辑
+const isCollapse = document.body.clientWidth < 950 ? ref(true) : ref(false)
+const collapseMenu = () => {
+  isCollapse.value = !isCollapse.value
+}
+const searchRes = useSearchStore()
+</script>
+
 
 <style scoped>
 
