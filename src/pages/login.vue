@@ -1,5 +1,6 @@
 <template>
-  <el-col  style="margin-top: 30vh" align="middle">
+  <Header :menu-index="'-1'"/>
+  <el-col  style="margin-top: 15vh" align="middle">
   <el-card class="box-card"  >
     <el-tabs type="border-card" v-model="activeTab" @tabClick="TabChange" v-if="showLogin">
       <el-tab-pane label="使用账号密码登陆">
@@ -9,20 +10,17 @@
               :rules="loginRules"
               label-width="120px"
               :model="DefaultForm"
+              label-position="top"
               style="height: 50px">
+            <el-form-item label=" " prop="username" >
               <el-input v-model="DefaultForm.username"
                         placeholder="Pleas input your username">
                 <template #prefix>
                   <el-icon :size="20"> <UserFilled /> </el-icon> <!--图标-->
                 </template>
               </el-input>
-          </el-form>
-          <el-form  
-              prop="password"
-              :rules="loginRules"
-              :model="DefaultForm"
-              label-width="120px"
-              style="height: 50px">
+            </el-form-item>
+            <el-form-item label=" " prop="password" >
             <el-input v-model="DefaultForm.password"
                       type="password"
                       placeholder="Please input password"
@@ -31,10 +29,11 @@
                 <el-icon :size="20"> <Lock />  </el-icon> <!--图标-->
               </template>
             </el-input>
+            </el-form-item>
           </el-form>
       </el-tab-pane>
 
-      <el-tab-pane label="使用Bangumi账号登陆">
+      <el-tab-pane label="使用Bangumi用户名登陆">
           <!--用户名表单-->
           <el-form
               ref="BangumiLoginRef"
@@ -44,7 +43,8 @@
               style="height: 50px"
           >
           <el-input v-model="BangumiForm.username"
-                    placeholder="Pleas input your username">
+                    placeholder="Pleas input your username"
+                    style="margin-top: 30px">
             <template #prefix>
               <el-icon :size="20"> <UserFilled />  </el-icon> <!--图标-->
             </template>
@@ -54,7 +54,7 @@
       <!--不同标签激活，按钮实行不同登陆-->
       <el-button type="primary" round @click="activeTab=='0' ? LoginDefault() : LoginBangumi() "
                  color="pink"
-                 style="margin-top: 10px"
+                 style="margin-top: 50px"
       >登陆</el-button>
     </el-tabs>
     <!-- 注册面板 -->
@@ -69,12 +69,13 @@
       <el-form-item label="Username" prop="username" >
         <el-input v-model="RegisterForm.username" placeholder="Input your username"/>
       </el-form-item>
-      <el-form-item label="E-mail" prop="email">
-        <el-input v-model="RegisterForm.email" placeholder="Input your email"/>
-      </el-form-item>
       <el-form-item label="Password" prop="password" >
         <el-input v-model="RegisterForm.password" placeholder="Input your password"/>
       </el-form-item>
+      <el-form-item label="E-mail" prop="email">
+        <el-input v-model="RegisterForm.email" placeholder="Input your email"/>
+      </el-form-item>
+      
       <el-button type="primary" round @click="Register()"
                  color="pink"
                  style="margin-top: 10px"
@@ -94,7 +95,8 @@
 </template>
 
 <script lang="ts" setup >
-import { BangumiLogin } from '../api/user' // login方法
+import Header from './Home/Header.vue'
+import { BangumiLogin,DefaultLogin,UserRegister } from '../api/user' // login方法
 import { reactive, ref } from 'vue'
 // 引入Vue Router
 import { useRouter } from 'vue-router'
@@ -114,10 +116,14 @@ const TabChange = (tab) => {
 // 是否显示登陆/注册
 const showLogin = ref(true)
 
+// 表单信息ref
+const DefaultFormRef = ref()
+const BangumiLoginRef = ref()
+const RegisterFormRef = ref()
 // 默认登陆的默认表单
 const DefaultForm = reactive({
   // 默认输入guest
-  username: 'guest',
+  username: 'admin',
   password: '123456'
 })
 // bangumi登陆的默认表单
@@ -132,10 +138,13 @@ const RegisterForm = reactive({
   password: ''
 })
 
+// 实例用户仓库
+const userProfile = useUserStore()
+
 // 用户名规则验证器
 const UserFormValidator = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    callback(new Error('Please input '))
+    callback(new Error('Please input'))
   }
   callback()
 }
@@ -143,7 +152,6 @@ const UserFormValidator = (rule: any, value: any, callback: any) => {
 const loginRules = {
   username: [
     {
-      required: true,
       validator: UserFormValidator,
       message: '用户名还没有填写',
       trigger: 'blur'
@@ -151,7 +159,6 @@ const loginRules = {
   ],
   password:[
     {
-      required: true,
       message: '密码还没有填写',
       trigger: 'blur'
     }
@@ -169,7 +176,6 @@ const registerRules = {
   ],
   email:[
     {
-      required: true,
       message: '邮箱还没有填写',
       trigger: 'blur'
     }
@@ -182,9 +188,28 @@ const registerRules = {
     }
   ]
 }
-const BangumiLoginRef = ref()
-// 实例用户仓库
-const userProfile = useUserStore()
+
+// 默认登陆
+const LoginDefault = () => {
+  DefaultFormRef.value.validate(async (valid) => {
+    if (valid){
+      DefaultLogin(DefaultForm.username,DefaultForm.password)
+          .then(res => {
+            // 设置用户信息
+            userProfile.setUserInfo(res.data.username, '', '', '')
+            // 显示登陆通知
+            eleNotice('success','欢迎，' + res.data.user.username + '!')
+            // 跳转到主页
+            router.push('/')
+          })
+          .catch(err => {
+            eleNotice('error',err.response.data.error)
+          })
+  }
+    else eleNotice('warning','Please input the valid information')
+})
+}
+// bangumi用户名登陆
 const LoginBangumi = () => {
   // 用户表单验证
   BangumiLoginRef.value.validate(async (valid) => {
@@ -196,25 +221,34 @@ const LoginBangumi = () => {
             userProfile.setUserInfo(res.data.username, res.data.nickname, res.data.avatar.large, res.data.sign)
             // 显示登陆通知
             eleNotice('success','欢迎，' + res.data.nickname + '!')
-            // 如果是 Bangumi 用户，跳转到主页
+            // 跳转到主页
             router.push('/')
           })
           .catch(err => {
-            eleNotice('error',err.response.data.description)
+            eleNotice('error',err.response.data.error)
           })
     }
+    else eleNotice('warning','Please input the valid information')
   })
 }
-// 默认登陆方式
-const LoginDefault = () => {
-  eleNotice('warning','coming soon')
-  // TODO
-}
-
 // 注册按钮
 const Register =() => {
-  
-  
+  RegisterFormRef.value.validate(async (valid) => {
+  if (valid) {
+    // 调用注册函数，post给后端
+    UserRegister(RegisterForm.username,RegisterForm.email,RegisterForm.password)
+        .then(res => {
+          // 显示注册通知
+          eleNotice('success','注册成功！')
+          // 跳转到主页
+          router.push('/')
+        })
+        .catch(err => {
+          eleNotice('error',err.response.data.error)
+        })
+  }
+  else eleNotice('warning','Please input the valid information')
+})
 }
 // 通知显示函数
 function eleNotice(type,msg){
@@ -244,7 +278,7 @@ function eleNotice(type,msg){
     default:
       ElNotification({
         title: 'ERROR',
-        message: 'please input correct notice type ,it`s a string',
+        message: 'please input correct notice type ,it`s must a string',
         type: 'error',
         duration: 2000
       })

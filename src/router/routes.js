@@ -6,6 +6,7 @@ import UserPage from '../pages/UserPage.vue'
 import docs from '../pages/doc/documents.vue'
 import docCat from '../pages/doc/docCat.vue'
 import login from "../pages/login.vue"; 
+import posttest from "../pages/PostTest.vue"
 
 const routes = [
   { path: '/', component: home }, //  首页
@@ -25,7 +26,8 @@ const routes = [
       }
     ]
   }, // 文章路由
-  { path: '/:patchMatch(.*)', name: NotFound, component: NotFound }// 404 页面
+  { path: '/:patchMatch(.*)', name: NotFound, component: NotFound }, // 404 页面
+  { path: '/posttest',component: posttest } // post 测试页面
 ]
 
 export default routes

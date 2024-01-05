@@ -23,8 +23,13 @@ export default ({ mode }) => {
     envPrefix: envPrefix,
     server: {
       proxy: { // 使用 proxy 实例
-        '/api': {
+        '/bgmapi': {
           target: 'https://api.bgm.tv',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/bgmapi/, '')
+        },
+        '/api':{
+          target: 'http://localhost:8080',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
