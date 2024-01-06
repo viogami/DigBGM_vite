@@ -196,7 +196,7 @@ const LoginDefault = () => {
       DefaultLogin(DefaultForm.username,DefaultForm.password)
           .then(res => {
             // 设置用户信息
-            userProfile.setUserInfo(res.data.username, '', '', '')
+            userProfile.setUserInfo(res.data.user.username, res.data.user.username, '', '')
             // 显示登陆通知
             eleNotice('success','欢迎，' + res.data.user.username + '!')
             // 跳转到主页

@@ -29,7 +29,7 @@ export default ({ mode }) => {
           rewrite: (path) => path.replace(/^\/bgmapi/, '')
         },
         '/api':{
-          target: 'http://localhost:8080',
+          target: 'http://digbgmapi.masterkagami.com',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
